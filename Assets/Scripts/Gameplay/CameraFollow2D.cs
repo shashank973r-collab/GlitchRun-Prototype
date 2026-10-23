@@ -19,7 +19,7 @@ namespace GlitchRun.Gameplay
         [Header("Level Bounds")]
         [SerializeField] private bool clampBounds = true;
         [SerializeField] private Vector2 minBounds = new Vector2(-2f, -1f);
-        [SerializeField] private Vector2 maxBounds = new Vector2(68f, 8f);
+        [SerializeField] private Vector2 maxBounds = new Vector2(380f, 10f);
 
         [Header("Background Parallax")]
         [SerializeField] private Transform backgroundTransform;

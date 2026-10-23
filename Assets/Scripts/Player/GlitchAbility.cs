@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using GlitchRun.Audio;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -7,25 +8,23 @@ using UnityEngine.InputSystem;
 namespace GlitchRun.Player
 {
     /// <summary>
-    /// Handles the player's signature Glitch Ability:
-    /// Briefly phases through red laser hazards and digital defenses, with visual distortion and cooldown.
+    /// Handles the player's signature Glitch Phase Ability:
+    /// Enables phasing through holographic Glitch Barriers for ~2.0 seconds with safe-exit collision verification.
+    /// Note: Does not provide immunity to lethal lasers or physical hazards.
     /// </summary>
     public class GlitchAbility : MonoBehaviour
     {
         [Header("Ability Timers")]
-        [Tooltip("Duration in seconds that the glitch phase remains active.")]
         [SerializeField] private float glitchDuration = 2.0f;
-
-        [Tooltip("Cooldown period in seconds before the glitch can be activated again.")]
         [SerializeField] private float glitchCooldown = 3.5f;
 
         [Header("Visual Feedback")]
         [SerializeField] private SpriteRenderer targetRenderer;
-        [SerializeField] private Color glitchColor1 = new Color(0.2f, 1f, 0.5f, 0.85f); // Pale neon green
-        [SerializeField] private Color glitchColor2 = new Color(0f, 0.9f, 1f, 0.75f);  // Cyan
-        [SerializeField] private Color glitchColor3 = new Color(0.9f, 0.2f, 1f, 0.75f); // Magenta glitch accent
+        [SerializeField] private Color glitchColor1 = new Color(0.0f, 1.0f, 0.85f, 0.85f); // Cyan
+        [SerializeField] private Color glitchColor2 = new Color(0.9f, 0.1f, 0.95f, 0.75f); // Neon Magenta
+        [SerializeField] private Color glitchColor3 = new Color(0.1f, 1.0f, 0.5f, 0.85f);  // Acid Green
 
-
+        private Collider2D playerCollider;
         private float activeTimer = 0f;
         private float cooldownTimer = 0f;
         private Color originalColor = Color.white;
@@ -39,14 +38,7 @@ namespace GlitchRun.Player
         public float RemainingActiveTime => Mathf.Max(0f, activeTimer);
         public bool CanGlitch => !IsGlitching && cooldownTimer <= 0f;
 
-        /// <summary>
-        /// Returns 1 when on full cooldown, 0 when ready to use.
-        /// </summary>
         public float NormalizedCooldown => glitchCooldown > 0f ? Mathf.Clamp01(cooldownTimer / glitchCooldown) : 0f;
-
-        /// <summary>
-        /// Returns fraction of remaining active glitch duration (1 -> 0).
-        /// </summary>
         public float NormalizedActiveTime => glitchDuration > 0f ? Mathf.Clamp01(activeTimer / glitchDuration) : 0f;
 
         public event Action OnGlitchStarted;
@@ -54,6 +46,7 @@ namespace GlitchRun.Player
 
         private void Awake()
         {
+            playerCollider = GetComponent<Collider2D>();
             if (targetRenderer == null)
             {
                 targetRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -67,7 +60,6 @@ namespace GlitchRun.Player
 
         private void Update()
         {
-            // Update timers
             if (IsGlitching)
             {
                 activeTimer -= Time.deltaTime;
@@ -75,7 +67,7 @@ namespace GlitchRun.Player
 
                 if (activeTimer <= 0f)
                 {
-                    EndGlitch();
+                    TryEndGlitchWithSafeExit();
                 }
             }
             else if (cooldownTimer > 0f)
@@ -84,7 +76,6 @@ namespace GlitchRun.Player
                 if (cooldownTimer < 0f) cooldownTimer = 0f;
             }
 
-            // Input check (Shift key or Gamepad shoulder)
             if (CheckGlitchInput())
             {
                 TryActivateGlitch();
@@ -117,9 +108,38 @@ namespace GlitchRun.Player
             activeTimer = glitchDuration;
             cooldownTimer = glitchCooldown;
 
-            Debug.Log("[GlitchRun] GLITCH ABILITY ACTIVATED! Phasing through hazards for 2.0s.");
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySfx("glitch_on");
+            }
+
             OnGlitchStarted?.Invoke();
             return true;
+        }
+
+        private void TryEndGlitchWithSafeExit()
+        {
+            // Safe-exit verification: Ensure player is not embedded inside a solid barrier
+            if (playerCollider != null)
+            {
+                Collider2D[] overlapping = new Collider2D[4];
+                ContactFilter2D filter = new ContactFilter2D();
+                filter.useTriggers = false;
+                int count = playerCollider.Overlap(filter, overlapping);
+
+                for (int i = 0; i < count; i++)
+                {
+                    if (overlapping[i] != null && overlapping[i].gameObject != gameObject)
+                    {
+                        // Overlapping a solid obstacle; extend phase by 0.1s and nudge player slightly
+                        activeTimer = 0.1f;
+                        transform.position += Vector3.right * 0.15f;
+                        return;
+                    }
+                }
+            }
+
+            EndGlitch();
         }
 
         private void EndGlitch()
@@ -132,7 +152,11 @@ namespace GlitchRun.Player
                 targetRenderer.color = originalColor;
             }
 
-            Debug.Log("[GlitchRun] Glitch phase ended. Recharging system...");
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySfx("glitch_off");
+            }
+
             OnGlitchEnded?.Invoke();
         }
 
@@ -140,7 +164,6 @@ namespace GlitchRun.Player
         {
             if (targetRenderer == null) return;
 
-            // Rapid digital color flicker
             flickerTimer += Time.deltaTime;
             if (flickerTimer >= 0.05f)
             {
@@ -149,18 +172,10 @@ namespace GlitchRun.Player
 
                 switch (flickerIndex)
                 {
-                    case 0:
-                        targetRenderer.color = glitchColor1;
-                        break;
-                    case 1:
-                        targetRenderer.color = glitchColor2;
-                        break;
-                    case 2:
-                        targetRenderer.color = glitchColor3;
-                        break;
-                    case 3:
-                        targetRenderer.color = new Color(1f, 1f, 1f, 0.4f);
-                        break;
+                    case 0: targetRenderer.color = glitchColor1; break;
+                    case 1: targetRenderer.color = glitchColor2; break;
+                    case 2: targetRenderer.color = glitchColor3; break;
+                    case 3: targetRenderer.color = new Color(1f, 1f, 1f, 0.4f); break;
                 }
             }
         }
@@ -173,6 +188,11 @@ namespace GlitchRun.Player
             }
             cooldownTimer = 0f;
             activeTimer = 0f;
+        }
+
+        private void OnDisable()
+        {
+            ResetAbility();
         }
     }
 }

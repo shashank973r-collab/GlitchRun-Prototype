@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using GlitchRun.Audio;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -52,6 +53,10 @@ namespace GlitchRun.Player
         public GlitchAbility Glitch => glitchAbility;
         public bool IsInvulnerable => isInvulnerable;
 
+        public float MoveSpeed => moveSpeed;
+        public float JumpForce => jumpForce;
+        public float GravityScale => defaultGravityScale;
+
         private Vector2 Velocity
         {
             get
@@ -93,7 +98,6 @@ namespace GlitchRun.Player
                 visualRenderer = GetComponentInChildren<SpriteRenderer>();
             }
 
-            // Create ground check point if not assigned
             if (groundCheckPoint == null)
             {
                 var checkObj = new GameObject("GroundCheck");
@@ -107,7 +111,7 @@ namespace GlitchRun.Player
         {
             if (Core.GameManager.Instance != null)
             {
-                Core.GameManager.Instance.SpawnPoint = transform.position;
+                Core.GameManager.Instance.SetActivePlayer(this);
                 Core.GameManager.Instance.OnPlayerRespawn += HandleRespawn;
             }
         }
@@ -122,7 +126,6 @@ namespace GlitchRun.Player
 
         private void Update()
         {
-            // Do not process input if game is not running
             if (Core.GameManager.Instance != null && Core.GameManager.Instance.CurrentState != Core.GameState.Playing)
             {
                 horizontalInput = 0f;
@@ -130,11 +133,8 @@ namespace GlitchRun.Player
             }
 
             ReadInput();
-
-            // Ground detection
             CheckGround();
 
-            // Timers for coyote time and jump buffer
             if (isGrounded)
             {
                 coyoteTimer = coyoteTime;
@@ -153,13 +153,11 @@ namespace GlitchRun.Player
                 jumpBufferTimer -= Time.deltaTime;
             }
 
-            // Execute jump if buffer and coyote are active
             if (jumpBufferTimer > 0f && coyoteTimer > 0f)
             {
                 ExecuteJump();
             }
 
-            // Visual facing direction
             UpdateFacingDirection();
         }
 
@@ -201,8 +199,7 @@ namespace GlitchRun.Player
         private void CheckGround()
         {
             Vector2 checkPos = groundCheckPoint != null ? (Vector2)groundCheckPoint.position : (Vector2)transform.position;
-            
-            // Check ground with layer mask if specified, or all non-trigger 2D colliders excluding self
+
             Collider2D col;
             if (groundLayer != 0)
             {
@@ -210,7 +207,6 @@ namespace GlitchRun.Player
             }
             else
             {
-                // Fallback: check anything except player collider
                 Collider2D[] hits = Physics2D.OverlapBoxAll(checkPos, groundCheckSize, 0f);
                 col = null;
                 foreach (var h in hits)
@@ -241,6 +237,11 @@ namespace GlitchRun.Player
             jumpBufferTimer = 0f;
             coyoteTimer = 0f;
             Velocity = new Vector2(Velocity.x, jumpForce);
+
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySfx("jump");
+            }
         }
 
         private void ApplyJumpGravityModifiers()
@@ -249,12 +250,10 @@ namespace GlitchRun.Player
 
             if (currentVelY < 0f)
             {
-                // Falling: higher gravity for snappy, non-floaty jump
                 rb.gravityScale = defaultGravityScale * fallGravityMultiplier;
             }
             else if (currentVelY > 0f && !jumpInputHeld)
             {
-                // Short hop / variable jump height
                 rb.gravityScale = defaultGravityScale * lowJumpGravityMultiplier;
             }
             else
@@ -280,32 +279,54 @@ namespace GlitchRun.Player
 
         public bool TryDamage(string source)
         {
-            // Glitch immunity: phase through lasers and hazards!
-            if (glitchAbility != null && glitchAbility.IsGlitching)
-            {
-                Debug.Log($"[GlitchRun] Glitch active! Phased through {source}.");
-                return false;
-            }
-
             if (isInvulnerable)
             {
                 return false;
             }
 
-            // Damage player
-            if (Core.GameManager.Instance != null)
+            if (AudioManager.Instance != null)
             {
-                Core.GameManager.Instance.PlayerDied();
+                AudioManager.Instance.PlaySfx("damage");
             }
 
+            if (Core.GameManager.Instance != null)
+            {
+                Core.GameManager.Instance.PlayerTookDamage(source);
+            }
+
+            StartCoroutine(DamageFlashRoutine());
             return true;
+        }
+
+        private IEnumerator DamageFlashRoutine()
+        {
+            isInvulnerable = true;
+            float elapsed = 0f;
+            float duration = 1.0f;
+            float interval = 0.08f;
+
+            while (elapsed < duration)
+            {
+                if (visualRenderer != null)
+                {
+                    visualRenderer.color = visualRenderer.color == Color.red ? Color.white : Color.red;
+                }
+                yield return new WaitForSeconds(interval);
+                elapsed += interval;
+            }
+
+            if (visualRenderer != null)
+            {
+                visualRenderer.color = Color.white;
+            }
+            isInvulnerable = false;
         }
 
         private void HandleRespawn()
         {
             if (Core.GameManager.Instance != null)
             {
-                transform.position = Core.GameManager.Instance.SpawnPoint;
+                transform.position = Core.GameManager.Instance.CurrentCheckpoint;
             }
 
             Velocity = Vector2.zero;
@@ -337,6 +358,7 @@ namespace GlitchRun.Player
             if (visualRenderer != null)
             {
                 visualRenderer.enabled = true;
+                visualRenderer.color = Color.white;
             }
             isInvulnerable = false;
         }

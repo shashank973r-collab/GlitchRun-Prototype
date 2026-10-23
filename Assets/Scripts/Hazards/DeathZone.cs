@@ -6,7 +6,7 @@ namespace GlitchRun.Hazards
 {
     /// <summary>
     /// Catch-all bottom hazard trigger for pits and gaps.
-    /// Resets or kills the player upon falling off platforms into the abyss.
+    /// Resets the player to their latest checkpoint or triggers Game Over when lives expire.
     /// </summary>
     public class DeathZone : MonoBehaviour
     {
@@ -21,18 +21,14 @@ namespace GlitchRun.Hazards
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            var player = other.GetComponent<PlayerController>();
-            if (player == null)
-            {
-                player = other.GetComponentInParent<PlayerController>();
-            }
+            var player = other.GetComponent<PlayerController>() ?? other.GetComponentInParent<PlayerController>();
 
             if (player != null)
             {
                 Debug.Log("[GlitchRun] Player fell into the simulation void!");
                 if (GameManager.Instance != null)
                 {
-                    GameManager.Instance.PlayerDied();
+                    GameManager.Instance.PlayerTookDamage("Simulation Void");
                 }
             }
         }

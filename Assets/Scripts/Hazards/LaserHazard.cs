@@ -6,6 +6,7 @@ namespace GlitchRun.Hazards
     /// <summary>
     /// Lethal red laser barrier.
     /// Emits a pulsating laser beam. Cycling lasers periodically deactivate to allow timed passage.
+    /// Standard damage lasers hurt the player even if Glitch Phase is active (unless canBeGlitched is explicitly set).
     /// </summary>
     public class LaserHazard : MonoBehaviour
     {
@@ -27,6 +28,13 @@ namespace GlitchRun.Hazards
         private float pulseSpeed = 8f;
 
         public bool IsLaserActive => isLaserActive;
+        public bool CanBeGlitched
+        {
+            get => canBeGlitched;
+            set => canBeGlitched = value;
+        }
+
+        public Collider2D Collider => laserCollider;
 
         private void Awake()
         {
@@ -97,6 +105,18 @@ namespace GlitchRun.Hazards
             EvaluatePlayerCollision(other);
         }
 
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (canBeGlitched)
+            {
+                var player = other.GetComponent<PlayerController>() ?? other.GetComponentInParent<PlayerController>();
+                if (player != null && player.Glitch != null && laserCollider != null)
+                {
+                    player.Glitch.UnregisterBarrierOverlap(laserCollider);
+                }
+            }
+        }
+
         private void EvaluatePlayerCollision(Collider2D other)
         {
             if (!isLaserActive) return;
@@ -104,12 +124,28 @@ namespace GlitchRun.Hazards
             var player = other.GetComponent<PlayerController>() ?? other.GetComponentInParent<PlayerController>();
             if (player != null)
             {
-                if (canBeGlitched && player.Glitch != null && player.Glitch.IsGlitching)
+                if (canBeGlitched && player.Glitch != null && (player.Glitch.IsGlitching || player.Glitch.IsGraceActiveFor(gameObject)))
                 {
+                    if (laserCollider != null)
+                    {
+                        player.Glitch.RegisterBarrierOverlap(laserCollider);
+                    }
                     return;
                 }
 
                 player.TryDamage("Laser Hazard");
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (canBeGlitched && laserCollider != null && Core.GameManager.Instance != null && Core.GameManager.Instance.ActivePlayer != null)
+            {
+                var glitch = Core.GameManager.Instance.ActivePlayer.Glitch;
+                if (glitch != null)
+                {
+                    glitch.UnregisterBarrierOverlap(laserCollider);
+                }
             }
         }
     }

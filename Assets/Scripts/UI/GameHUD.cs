@@ -190,17 +190,22 @@ namespace GlitchRun.UI
                 if (playerGlitch.IsGlitching)
                 {
                     if (glitchMeterFill != null) glitchMeterFill.fillAmount = playerGlitch.NormalizedActiveTime;
-                    if (glitchStatusText != null) glitchStatusText.text = "GLITCH ACTIVE [PHASING]";
+                    if (glitchStatusText != null) glitchStatusText.text = $"ACTIVE: {playerGlitch.RemainingActiveTime:F1}s";
+                }
+                else if (playerGlitch.IsGraceActive)
+                {
+                    if (glitchMeterFill != null) glitchMeterFill.fillAmount = playerGlitch.RemainingGraceTime / 0.25f;
+                    if (glitchStatusText != null) glitchStatusText.text = $"GRACE: {playerGlitch.RemainingGraceTime:F1}s";
                 }
                 else if (playerGlitch.CanGlitch)
                 {
                     if (glitchMeterFill != null) glitchMeterFill.fillAmount = 1f;
-                    if (glitchStatusText != null) glitchStatusText.text = "GLITCH READY [SHIFT]";
+                    if (glitchStatusText != null) glitchStatusText.text = "READY [SHIFT]";
                 }
                 else
                 {
                     if (glitchMeterFill != null) glitchMeterFill.fillAmount = 1f - playerGlitch.NormalizedCooldown;
-                    if (glitchStatusText != null) glitchStatusText.text = $"RECHARGING: {playerGlitch.CooldownTimer:F1}s";
+                    if (glitchStatusText != null) glitchStatusText.text = $"COOLDOWN: {playerGlitch.CooldownTimer:F1}s";
                 }
             }
         }

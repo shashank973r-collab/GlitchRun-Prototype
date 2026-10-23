@@ -89,6 +89,19 @@ namespace GlitchRun.Core
             Time.timeScale = 1f;
         }
 
+        public void ResetState()
+        {
+            currentLives = maxLives;
+            collectedFragments = 0;
+            currentScore = 0;
+            elapsedTime = 0f;
+            currentState = GameState.Playing;
+            Time.timeScale = 1f;
+            OnLivesUpdated?.Invoke(currentLives, maxLives);
+            OnFragmentsUpdated?.Invoke(collectedFragments, requiredFragments);
+            OnScoreUpdated?.Invoke(currentScore);
+        }
+
         private void Start()
         {
             InitializeLevel();

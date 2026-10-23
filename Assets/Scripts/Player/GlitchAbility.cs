@@ -1,40 +1,52 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using GlitchRun.Audio;
-// InputSystem package always available (activeInputHandler = 2, Both mode).
 using UnityEngine.InputSystem;
 
 namespace GlitchRun.Player
 {
     /// <summary>
     /// Handles the player's signature Glitch Phase Ability:
-    /// Enables phasing through holographic Glitch Barriers for ~2.0 seconds with safe-exit collision verification.
-    /// Note: Does not provide immunity to lethal lasers or physical hazards.
+    /// Enables phasing through holographic Glitch Barriers and phaseable lasers for 2.0 seconds.
+    /// Features safe-exit ejection, 0.25s grace window, and strict cleanup on scene events.
+    /// Does NOT provide immunity to standard physical hazards or unphaseable lasers.
     /// </summary>
     public class GlitchAbility : MonoBehaviour
     {
         [Header("Ability Timers")]
         [SerializeField] private float glitchDuration = 2.0f;
         [SerializeField] private float glitchCooldown = 3.5f;
+        [SerializeField] private float graceWindowDuration = 0.25f;
 
         [Header("Visual Feedback")]
         [SerializeField] private SpriteRenderer targetRenderer;
-        [SerializeField] private Color glitchColor1 = new Color(0.0f, 1.0f, 0.85f, 0.85f); // Cyan
-        [SerializeField] private Color glitchColor2 = new Color(0.9f, 0.1f, 0.95f, 0.75f); // Neon Magenta
-        [SerializeField] private Color glitchColor3 = new Color(0.1f, 1.0f, 0.5f, 0.85f);  // Acid Green
+        [SerializeField] private Color glitchColor1 = new Color(0.0f, 1.0f, 0.85f, 0.90f); // Bright Cyan
+        [SerializeField] private Color glitchColor2 = new Color(0.9f, 0.1f, 0.95f, 0.85f); // Neon Magenta
+        [SerializeField] private Color glitchColor3 = new Color(0.2f, 0.8f, 1.0f, 0.95f);  // Hologram Blue
+        [SerializeField] private Color glitchColor4 = new Color(1.0f, 1.0f, 1.0f, 0.70f);  // White Flash
 
         private Collider2D playerCollider;
+        private Rigidbody2D rb;
         private float activeTimer = 0f;
         private float cooldownTimer = 0f;
+        private float graceTimer = 0f;
         private Color originalColor = Color.white;
         private float flickerTimer = 0f;
         private int flickerIndex = 0;
 
+        // Tracks barriers overlapping the player during glitch phase
+        private readonly HashSet<Collider2D> activeOverlappingBarriers = new HashSet<Collider2D>();
+
         public bool IsGlitching { get; private set; } = false;
+        public bool IsPhasing => IsGlitching;
+        public bool IsGraceActive => graceTimer > 0f;
+
         public float CooldownTimer => cooldownTimer;
         public float GlitchDuration => glitchDuration;
         public float GlitchCooldown => glitchCooldown;
         public float RemainingActiveTime => Mathf.Max(0f, activeTimer);
+        public float RemainingGraceTime => Mathf.Max(0f, graceTimer);
         public bool CanGlitch => !IsGlitching && cooldownTimer <= 0f;
 
         public float NormalizedCooldown => glitchCooldown > 0f ? Mathf.Clamp01(cooldownTimer / glitchCooldown) : 0f;
@@ -46,6 +58,8 @@ namespace GlitchRun.Player
         private void Awake()
         {
             playerCollider = GetComponent<Collider2D>();
+            rb = GetComponent<Rigidbody2D>();
+
             if (targetRenderer == null)
             {
                 targetRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -66,7 +80,17 @@ namespace GlitchRun.Player
 
                 if (activeTimer <= 0f)
                 {
-                    TryEndGlitchWithSafeExit();
+                    BeginGraceOrEndGlitch();
+                }
+            }
+            else if (graceTimer > 0f)
+            {
+                graceTimer -= Time.deltaTime;
+                UpdateGraceVisuals();
+
+                if (graceTimer <= 0f)
+                {
+                    ResolveGraceExpiry();
                 }
             }
             else if (cooldownTimer > 0f)
@@ -109,6 +133,8 @@ namespace GlitchRun.Player
             IsGlitching = true;
             activeTimer = glitchDuration;
             cooldownTimer = glitchCooldown;
+            graceTimer = 0f;
+            activeOverlappingBarriers.Clear();
 
             if (AudioManager.Instance != null)
             {
@@ -119,24 +145,82 @@ namespace GlitchRun.Player
             return true;
         }
 
-        private void TryEndGlitchWithSafeExit()
+        public void RegisterBarrierOverlap(Collider2D barrierCollider)
         {
-            // Safe-exit verification: Ensure player is not embedded inside a solid barrier
+            if (barrierCollider != null)
+            {
+                activeOverlappingBarriers.Add(barrierCollider);
+            }
+        }
+
+        public void UnregisterBarrierOverlap(Collider2D barrierCollider)
+        {
+            if (barrierCollider != null)
+            {
+                activeOverlappingBarriers.Remove(barrierCollider);
+            }
+        }
+
+        public bool IsGraceActiveFor(GameObject barrierObj)
+        {
+            if (!IsGraceActive) return false;
+            if (barrierObj == null) return false;
+
+            var col = barrierObj.GetComponent<Collider2D>();
+            if (col != null && activeOverlappingBarriers.Contains(col))
+            {
+                return true;
+            }
+
+            return activeOverlappingBarriers.Count > 0;
+        }
+
+        private void BeginGraceOrEndGlitch()
+        {
+            activeTimer = 0f;
+            // Prune null or disabled colliders
+            activeOverlappingBarriers.RemoveWhere(c => c == null || !c.enabled);
+
+            // Verify if player is actively overlapping any registered barrier
+            bool isOverlappingBarrier = false;
             if (playerCollider != null)
             {
-                Collider2D[] overlapping = new Collider2D[4];
-                ContactFilter2D filter = new ContactFilter2D();
-                filter.useTriggers = false;
-                int count = playerCollider.Overlap(filter, overlapping);
-
-                for (int i = 0; i < count; i++)
+                foreach (var barrier in activeOverlappingBarriers)
                 {
-                    if (overlapping[i] != null && overlapping[i].gameObject != gameObject)
+                    if (barrier != null && playerCollider.IsTouching(barrier))
                     {
-                        // Overlapping a solid obstacle; extend phase by 0.1s and nudge player slightly
-                        activeTimer = 0.1f;
-                        transform.position += Vector3.right * 0.15f;
-                        return;
+                        isOverlappingBarrier = true;
+                        break;
+                    }
+                }
+            }
+
+            if (isOverlappingBarrier)
+            {
+                // Enter grace window for the overlapping barrier
+                IsGlitching = false;
+                graceTimer = graceWindowDuration;
+            }
+            else
+            {
+                EndGlitch();
+            }
+        }
+
+        private void ResolveGraceExpiry()
+        {
+            graceTimer = 0f;
+
+            // If still overlapping a barrier at grace expiry, push player out safely to the nearer side
+            if (playerCollider != null)
+            {
+                activeOverlappingBarriers.RemoveWhere(c => c == null || !c.enabled);
+
+                foreach (var barrier in activeOverlappingBarriers)
+                {
+                    if (barrier != null && playerCollider.IsTouching(barrier))
+                    {
+                        PushOutOfBarrier(barrier);
                     }
                 }
             }
@@ -144,15 +228,45 @@ namespace GlitchRun.Player
             EndGlitch();
         }
 
+        public void PushOutOfBarrier(Collider2D barrier)
+        {
+            if (barrier == null) return;
+
+            Bounds barrierBounds = barrier.bounds;
+            float playerWidth = playerCollider != null ? playerCollider.bounds.size.x : 0.85f;
+            float playerHalfWidth = playerWidth * 0.5f;
+
+            float currentX = transform.position.x;
+            float leftEjectX = barrierBounds.min.x - playerHalfWidth - 0.15f;
+            float rightEjectX = barrierBounds.max.x + playerHalfWidth + 0.15f;
+
+            float distLeft = Mathf.Abs(currentX - leftEjectX);
+            float distRight = Mathf.Abs(currentX - rightEjectX);
+
+            float targetX = (distLeft <= distRight) ? leftEjectX : rightEjectX;
+
+            Vector3 newPos = transform.position;
+            newPos.x = targetX;
+            transform.position = newPos;
+
+            if (rb != null)
+            {
+#if UNITY_6000_0_OR_NEWER
+                rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+#else
+                rb.velocity = new Vector2(0f, rb.velocity.y);
+#endif
+            }
+        }
+
         private void EndGlitch()
         {
             IsGlitching = false;
             activeTimer = 0f;
+            graceTimer = 0f;
+            activeOverlappingBarriers.Clear();
 
-            if (targetRenderer != null)
-            {
-                targetRenderer.color = originalColor;
-            }
+            RestoreOriginalState();
 
             if (AudioManager.Instance != null)
             {
@@ -160,6 +274,14 @@ namespace GlitchRun.Player
             }
 
             OnGlitchEnded?.Invoke();
+        }
+
+        private void RestoreOriginalState()
+        {
+            if (targetRenderer != null)
+            {
+                targetRenderer.color = originalColor;
+            }
         }
 
         private void UpdateGlitchVisuals()
@@ -177,19 +299,28 @@ namespace GlitchRun.Player
                     case 0: targetRenderer.color = glitchColor1; break;
                     case 1: targetRenderer.color = glitchColor2; break;
                     case 2: targetRenderer.color = glitchColor3; break;
-                    case 3: targetRenderer.color = new Color(1f, 1f, 1f, 0.4f); break;
+                    case 3: targetRenderer.color = glitchColor4; break;
                 }
             }
         }
 
+        private void UpdateGraceVisuals()
+        {
+            if (targetRenderer == null) return;
+
+            // Rapid cyan blinking during grace window
+            float alpha = Mathf.PingPong(Time.time * 20f, 1f);
+            targetRenderer.color = new Color(0f, 1f, 0.85f, 0.5f + 0.5f * alpha);
+        }
+
         public void ResetAbility()
         {
-            if (IsGlitching)
-            {
-                EndGlitch();
-            }
+            IsGlitching = false;
             cooldownTimer = 0f;
             activeTimer = 0f;
+            graceTimer = 0f;
+            activeOverlappingBarriers.Clear();
+            RestoreOriginalState();
         }
 
         private void OnDisable()

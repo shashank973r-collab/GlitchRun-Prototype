@@ -1,9 +1,8 @@
 using System;
 using UnityEngine;
 using GlitchRun.Audio;
-#if ENABLE_INPUT_SYSTEM
+// InputSystem package always available (activeInputHandler = 2, Both mode).
 using UnityEngine.InputSystem;
-#endif
 
 namespace GlitchRun.Player
 {
@@ -84,7 +83,6 @@ namespace GlitchRun.Player
 
         private bool CheckGlitchInput()
         {
-#if ENABLE_INPUT_SYSTEM
             var kb = Keyboard.current;
             if (kb != null && (kb.leftShiftKey.wasPressedThisFrame || kb.rightShiftKey.wasPressedThisFrame))
             {
@@ -96,7 +94,11 @@ namespace GlitchRun.Player
             {
                 return true;
             }
-#endif
+
+            // Legacy fallback
+            if (Keyboard.current == null && UnityEngine.Input.GetKeyDown(KeyCode.LeftShift))
+                return true;
+
             return false;
         }
 

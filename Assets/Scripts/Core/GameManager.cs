@@ -3,9 +3,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using GlitchRun.Player;
 using GlitchRun.Audio;
-#if ENABLE_INPUT_SYSTEM
+// InputSystem package always available (activeInputHandler = 2, Both mode).
 using UnityEngine.InputSystem;
-#endif
 
 namespace GlitchRun.Core
 {
@@ -152,25 +151,31 @@ namespace GlitchRun.Core
 
         private bool CheckPauseInput()
         {
-#if ENABLE_INPUT_SYSTEM
             var kb = Keyboard.current;
             if (kb != null && (kb.escapeKey.wasPressedThisFrame || kb.pKey.wasPressedThisFrame)) return true;
 
             var pad = Gamepad.current;
             if (pad != null && pad.startButton.wasPressedThisFrame) return true;
-#endif
+
+            // Legacy fallback
+            if (kb == null && (UnityEngine.Input.GetKeyDown(KeyCode.Escape) || UnityEngine.Input.GetKeyDown(KeyCode.P)))
+                return true;
+
             return false;
         }
 
         private bool CheckRestartInput()
         {
-#if ENABLE_INPUT_SYSTEM
             var kb = Keyboard.current;
             if (kb != null && kb.rKey.wasPressedThisFrame) return true;
 
             var pad = Gamepad.current;
             if (pad != null && (pad.startButton.wasPressedThisFrame || pad.buttonNorth.wasPressedThisFrame)) return true;
-#endif
+
+            // Legacy fallback
+            if (kb == null && UnityEngine.Input.GetKeyDown(KeyCode.R))
+                return true;
+
             return false;
         }
 

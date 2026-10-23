@@ -1,9 +1,9 @@
 using System.Collections;
 using UnityEngine;
 using GlitchRun.Audio;
-#if ENABLE_INPUT_SYSTEM
+// Always import InputSystem — package is installed and activeInputHandler = 2 (Both).
+// ENABLE_INPUT_SYSTEM is not auto-defined in "Both" mode, so we use the API directly.
 using UnityEngine.InputSystem;
-#endif
 
 namespace GlitchRun.Player
 {
@@ -24,7 +24,7 @@ namespace GlitchRun.Player
 
         [Header("Ground Detection")]
         [SerializeField] private Transform groundCheckPoint;
-        [SerializeField] private Vector2 groundCheckSize = new Vector2(0.5f, 0.15f);
+        [SerializeField] private Vector2 groundCheckSize = new Vector2(0.75f, 0.25f);
         [SerializeField] private LayerMask groundLayer;
 
         [Header("Visuals")]
@@ -102,7 +102,9 @@ namespace GlitchRun.Player
             {
                 var checkObj = new GameObject("GroundCheck");
                 checkObj.transform.parent = transform;
-                checkObj.transform.localPosition = new Vector3(0, -0.6f, 0);
+                // CapsuleCollider2D: size(0.85,1.8) offset(0,0.1) → bottom at y=-0.8.
+                // Ground check must be BELOW that bottom to detect platforms.
+                checkObj.transform.localPosition = new Vector3(0, -0.95f, 0);
                 groundCheckPoint = checkObj.transform;
             }
         }
@@ -173,7 +175,7 @@ namespace GlitchRun.Player
             jumpInputDown = false;
             jumpInputHeld = false;
 
-#if ENABLE_INPUT_SYSTEM
+            // --- New Input System (com.unity.inputsystem 1.x, always installed) ---
             var kb = Keyboard.current;
             if (kb != null)
             {
@@ -181,6 +183,13 @@ namespace GlitchRun.Player
                 if (kb.dKey.isPressed || kb.rightArrowKey.isPressed) horizontalInput += 1f;
                 if (kb.spaceKey.wasPressedThisFrame || kb.wKey.wasPressedThisFrame || kb.upArrowKey.wasPressedThisFrame) jumpInputDown = true;
                 if (kb.spaceKey.isPressed || kb.wKey.isPressed || kb.upArrowKey.isPressed) jumpInputHeld = true;
+            }
+            else
+            {
+                // Legacy Input fallback (available when activeInputHandler = 0 or 2)
+                horizontalInput = UnityEngine.Input.GetAxisRaw("Horizontal");
+                if (UnityEngine.Input.GetButtonDown("Jump")) jumpInputDown = true;
+                if (UnityEngine.Input.GetButton("Jump"))    jumpInputHeld = true;
             }
 
             var pad = Gamepad.current;
@@ -193,7 +202,6 @@ namespace GlitchRun.Player
                 if (pad.buttonSouth.wasPressedThisFrame) jumpInputDown = true;
                 if (pad.buttonSouth.isPressed) jumpInputHeld = true;
             }
-#endif
         }
 
         private void CheckGround()

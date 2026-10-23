@@ -1,12 +1,19 @@
 # GLITCH RUN — BREAK THE SIMULATION
-**Playable Prototype — 2D Cyberpunk Side-Scroller**
+**Complete, Playable 2D Cyberpunk Platformer**
 
-*Engine: Unity 6 (6000.6.7f1) | URP 2D | Branch: `feature/playable-prototype`*
+*Engine: Unity 6 (`6000.6.7f1`) | Render Pipeline: URP 2D | Input: Unity Input System*  
+*Target: Windows Standalone x64 / Live College Gameathon Demo*
 
 ---
 
-## 🎮 Game Overview & Objective
-In **Glitch Run**, you control a cyber-runner attempting to breach a high-security virtual simulation. Navigate across charcoal industrial platforms, leap over bottomless voids, collect neon-green data fragments, and use your signature **Glitch Phase** ability to phase unharmed through lethal red laser firewalls to reach the terminal breach exit gate.
+## 🎮 Game Overview & Narrative
+In **Glitch Run: Break the Simulation**, you awaken inside a crumbling, corrupted AI mainframe. High-security laser firewalls block escape corridors, patrolling reconnaissance drones sweep the platforms, and lethal gaps drop into the infinite simulation void.
+
+Your objective:
+1. Traverse five high-tension simulation sectors.
+2. Collect at least **3 Data Fragments** (`[◆]`) scattered throughout the mainframe.
+3. Master your signature **Glitch Phase** (`Left Shift`) to pass harmlessly through holographic magenta barriers.
+4. Reach the glowing **Terminal Breach Exit Gate** to escape the simulation before total neural collapse!
 
 ---
 
@@ -14,92 +21,99 @@ In **Glitch Run**, you control a cyber-runner attempting to breach a high-securi
 
 | Action | Keyboard | Gamepad |
 | :--- | :--- | :--- |
-| **Move Left / Right** | `A` / `D` or `←` / `→` | Left Stick / D-Pad |
-| **Jump** (Variable height) | `Space`, `W`, or `↑` | `Button South` (A / ✕) |
-| **Glitch Phase** (Hazard Immunity) | `Left Shift` or `Right Shift` | `Right Shoulder` / `Right Trigger` |
-| **Restart Simulation** | `R` (on GameOver / Victory) | `Start` / Menu Button |
+| **Move Left / Right** | `A` / `D` or `←` / `→` | Left Analog Stick / D-Pad |
+| **Jump** (Variable height, coyote time) | `Space`, `W`, or `↑` | `Button South` (A / ✕) |
+| **Glitch Phase** (Phase through barriers) | `Left Shift` or `Right Shift` | `Right Shoulder` / `Right Trigger` |
+| **Pause / Settings** | `Escape` or `P` | `Start` / Menu Button |
+| **Quick Restart** (Game Over / Victory) | `R` | `Button North` (Y / △) |
 
-> **Glitch Tip**: Red lasers are normally lethal on contact! Trigger your **Glitch Ability** (`Shift`) just before touching a laser to phase straight through the beam unharmed. Keep an eye on your Glitch meter: it provides 2.0 seconds of phase time with a 3.5-second cooldown.
+> ⚡ **Glitch Phase Mechanics**: Pressing `Left Shift` grants **2.0 seconds** of phase shifting with an animated energy meter and chromatic visual distortion. While phasing, you can pass straight through magenta **Glitch Barriers**. The ability includes safe-exit boundary detection ensuring you never get trapped inside solid architecture when the phase expires. Note: Glitch Phase does not grant immunity to lethal red lasers or patrolling security drones.
 
 ---
 
-## 🚀 How to Play the Prototype
+## 🚀 How to Launch & Play
 
-1. Open the project in **Unity 6 (6000.6.7f1)**.
-2. In the Project window, navigate to:
-   `Assets/Scenes/PrototypeScene.unity`
-3. Double-click to open `PrototypeScene.unity`.
-4. Press the **Play** button in the Unity Editor toolbar.
-5. **Level Progression**:
-   - **Section 1 (Ground Zero)**: Practice movement and jump controls. Collect Data Fragment 1/5.
-   - **Section 2 (The Firewall)**: Encounter Laser Hazard 1. Press `[Left Shift]` to Glitch through the red beam and retrieve Data Fragment 2/5.
-   - **Section 3 (Stepping Stones & Cycling Laser)**: Leap across floating ledges over the abyss. Time or glitch through the cycling laser to secure Data Fragment 3/5 (*Exit Objective Unlocked!*).
-   - **Section 4 (The Core Run)**: Face dual laser defenses. Collect bonus Data Fragment 4/5 and wallop a high jump for secret bonus Data Fragment 5/5.
-   - **Section 5 (Terminal Breach)**: Reach the glowing neon-green Exit Gate and escape to trigger the **Victory** screen!
+### In Unity Editor
+1. Open the project in **Unity 6 (`6000.6.7f1`)**.
+2. Open `Assets/Scenes/MainMenu.unity`.
+3. Press **▶ Play** in the Unity toolbar.
+4. Click **START SIMULATION** to breach into Zone 1!
+
+### Scene Progression Loop
+- **MainMenu (`Assets/Scenes/MainMenu.unity`)**: Parallax animated cyberpunk skyline, stylized neon title, Play, How To Play guide, Volume & Display Settings, and Quit.
+- **Gameplay (`Assets/Scenes/Gameplay.unity`)**:
+  - **Zone 1 (Cyber Alley)**: Movement and jump tutorial. Collect Fragment 1/5. Checkpoint 1.
+  - **Zone 2 (Firewall Grid)**: Timed laser timings and holographic magenta Glitch Barrier. Collect Fragment 2/5.
+  - **Zone 3 (Security Void)**: Precision floating ledges over the abyss with cycling laser defense. Collect Fragment 3/5 (*Exit Unlocked!*). Checkpoint 2.
+  - **Zone 4 (Drone Corridor)**: Patrolling security drones, dual lasers, and secret elevated ledge with bonus Fragment 5/5.
+  - **Zone 5 (Terminal Breach)**: Terminal exit portal that activates when 3 fragments are secured, transitioning to Victory!
+- **Victory (`Assets/Scenes/Victory.unity`)**: Live breach time, fragments gathered, score tally, performance rating (`S+`, `A`, `B`, `C`), Play Again, and Main Menu buttons.
+- **GameOver (`Assets/Scenes/GameOver.unity`)**: Neural flatline screen with quick restart and main menu options.
 
 ---
 
 ## 🏗️ Architecture & Scripts
 
-All gameplay scripts are located in `Assets/Scripts/` and isolated within `GlitchRun.asmdef` for clean, modular compilation:
+All scripts are cleanly isolated under `GlitchRun.asmdef` (Runtime) and `GlitchRun.Editor.asmdef` (Editor):
 
 ```
 Assets/
 ├── Art/
-│   ├── Characters/Player/         # Teammate player art & PF_PlayerVisual prefab (preserved)
-│   ├── Environments/Background/   # Teammate 4 city JPEG backgrounds & animation (preserved)
-│   └── Sprites/                   # Cyberpunk platforms, lasers, fragments, exit gate
+│   ├── Characters/Player/       # Teammate player art & animations (preserved)
+│   ├── Environments/Background/ # Teammate 4 city JPEG backgrounds & animation (preserved)
+│   ├── Sprites/                 # Platforms, lasers, drones, glitch barriers, fragments, checkpoints
+│   ├── UI/                      # Cyberpunk hearts, button frames, energy meters
+│   └── Decor/                   # Holographic warning street decals
+├── Audio/
+│   ├── Music/                   # Synthesized 16-bit cyber-synth BGM loops (gameplay & menu)
+│   └── SFX/                     # Procedurally synthesized jump, pickup, glitch, damage, death, victory SFX
 ├── Prefabs/
-│   ├── PF_Player.prefab           # Player with physics, GlitchAbility, & PlayerController
-│   ├── PF_Platform.prefab         # Charcoal metallic platforms with BoxCollider2D
-│   ├── PF_LaserHazard.prefab      # Lethal red laser beam with glitch detection
-│   ├── PF_DataFragment.prefab     # Animated floating neon-green collectible
-│   └── PF_ExitGate.prefab         # Unlocks when 3 fragments secured; triggers victory
+│   ├── PF_Player.prefab         # Rigidbody2D player controller with GlitchAbility & i-frames
+│   ├── PF_Platform.prefab       # Charcoal metallic platforms with BoxCollider2D
+│   ├── PF_LaserHazard.prefab    # Continuous & cycling red laser beams
+│   ├── PF_DroneHazard.prefab    # Ping-pong patrolling security recon bot
+│   ├── PF_GlitchBarrier.prefab  # Holographic phase barrier
+│   ├── PF_DataFragment.prefab   # Floating, bobbing, rotating collectible
+│   ├── PF_Checkpoint.prefab     # Interactive respawn terminal beacon
+│   └── PF_ExitGate.prefab       # Objective-locked level escape portal
+├── Resources/Audio/             # Runtime audio clips for zero-dependency loading
 ├── Scenes/
-│   ├── ArtTestScene.unity         # Teammates' original visual test scene (unmodified)
-│   └── PrototypeScene.unity       # Dedicated fully-playable level
-└── Scripts/
-    ├── Core/
-    │   └── GameManager.cs         # Simulation state, lives, fragments, level flow
-    ├── Player/
-    │   ├── PlayerController.cs    # 2D physics, ground check, coyote time, jump buffering
-    │   └── GlitchAbility.cs       # 2.0s hazard phasing, visual glitch flicker, cooldown
-    ├── Hazards/
-    │   ├── LaserHazard.cs         # Red laser logic, constant/cycling modes, glitch bypass
-    │   └── DeathZone.cs           # Bottom abyss trigger catching pit falls
-    ├── Gameplay/
-    │   ├── DataFragment.cs        # Bobbing/spinning neon collectible
-    │   ├── ExitGate.cs            # Terminal state transition (locked amber -> unlocked green)
-    │   └── CameraFollow2D.cs      # Smooth camera tracking, clamping, & city parallax
-    ├── UI/
-    │   └── GameHUD.cs             # Cyberpunk HUD, glitch meter, GameOver/Victory screens
-    └── Editor/
-        └── PrototypeSceneBuilder.cs # Automated scene & prefab generator utility
+│   ├── MainMenu.unity           # Index 0 in Build Settings
+│   ├── Gameplay.unity           # Index 1 in Build Settings
+│   ├── Victory.unity            # Index 2 in Build Settings
+│   └── GameOver.unity           # Index 3 in Build Settings
+├── Scripts/
+│   ├── Core/GameManager.cs      # Authoritative state machine, lives, score, level progression
+│   ├── Audio/AudioManager.cs    # Persistent BGM/SFX manager with PlayerPrefs volume persistence
+│   ├── Player/                  # PlayerController.cs, GlitchAbility.cs
+│   ├── Hazards/                 # LaserHazard.cs, DroneHazard.cs, GlitchBarrier.cs, DeathZone.cs
+│   ├── Gameplay/                # Checkpoint.cs, DataFragment.cs, ExitGate.cs, CameraFollow2D.cs
+│   ├── UI/                      # GameHUD.cs (uGUI), MainMenuController.cs, EndGameController.cs
+│   └── Editor/                  # GameSceneBuilder.cs, LevelReachabilityValidator.cs, AssetGenerator.cs
+└── Tests/Editor/                # Automated EditMode unit tests (NUnit)
 ```
 
 ---
 
-## 🎨 Visual Direction & Palette
-- **Environments**: Charcoal / near-black metallic platforms (`#12141A`, `#1A1E28`) with neon edge highlights.
-- **Hazards**: Intense neon-red laser beams (`#FF1144`, `#FF003C`) with pulsing electrical core.
-- **Collectibles**: Neon-green cyber fragments (`#00FF66`, `#39FF14`) with rotational and bobbing animation.
-- **Player**: Teammate's cyberpunk player sprite with pale-green accents and digital chromatic flickering during glitch phasing.
-- **Background**: Teammate's animated 4-frame cyberpunk city skyline (`BG_City_Loop.anim`) scrolling with smooth parallax.
-- **HUD & Screens**: High-contrast cyberpunk styling with real-time integrity gauge, data counter, glitch cooldown bar, and dedicated game-over / victory interfaces.
+## 🛠️ Automated Scene Re-Generation & Verification
+
+The entire game can be rebuilt and validated automatically via Unity Editor menus or headless CLI:
+
+- **Rebuild Entire Game**: Menu `Glitch Run > Build Complete Game (All Scenes & Prefabs)`  
+  CLI: `Unity.exe -batchmode -nographics -quit -projectPath "." -executeMethod GlitchRun.EditorScripts.GameSceneBuilder.BuildCompleteGame`
+- **Rebuild Art & Audio**: Menu `Glitch Run > Generate All Art & Audio Assets`  
+  CLI: `Unity.exe -batchmode -nographics -quit -projectPath "." -executeMethod GlitchRun.EditorScripts.AssetGenerator.GenerateAllAssets`
+- **Verify Jump Reachability**: Menu `Glitch Run > Verify Level Jump Reachability`  
+  CLI: `Unity.exe -batchmode -nographics -quit -projectPath "." -executeMethod GlitchRun.EditorScripts.LevelReachabilityValidator.VerifyLevelReachability`
+- **Run Automated Unit Tests**:  
+  CLI: `Unity.exe -batchmode -nographics -runTests -testPlatform EditMode -testResults results.xml -projectPath "."`
 
 ---
 
-## 🛡️ Safety & Team Preservation Compliance
-1. **Teammate Work Preserved**:
-   - `Assets/Scenes/ArtTestScene.unity` was completely preserved without edits.
-   - `Assets/Art/Characters/Player/` (`main_player.png`, `PF_PlayerVisual.prefab`) and all `.meta` files are intact.
-   - `Assets/Art/Environments/Background/` (`BG_City_01` to `04`, `BG_City_Loop.anim`, `BG_City_Animated.controller`) are untouched.
-2. **Branching**: Created dedicated branch `feature/playable-prototype` based on `feature/cyberpunk-art`.
-3. **No External Plugin Bloat**: Pure Unity 6 standard libraries and package-included URP 2D / Input System. No heavy post-processing, 3D assets, or unneeded third-party plugins.
+## 📦 Building Standalone Windows Executable (.exe)
 
----
-
-## ⚙️ Technical Notes & Known Limitations
-- **Input System**: Built using the Unity Input System Package (`activeInputHandler: 1` in Project Settings), utilizing `UnityEngine.InputSystem.Keyboard` and `Gamepad`.
-- **UI Dual-Mode**: `GameHUD` is equipped with an automatic Cyberpunk IMGUI fallback that renders high-contrast, responsive UI directly in `OnGUI()`. Even if uGUI Canvas components are not wired up, the HUD, GameOver, and Victory screens are 100% visible and interactive.
-- **Re-Generation**: The entire scene and all prefabs can be rebuilt at any time via the Editor menu: **`Glitch Run > Build Prototype Scene and Prefabs`**.
+To produce a production Windows build:
+1. In Unity, open **File > Build Profiles** (or **Build Settings**).
+2. Ensure `MainMenu`, `Gameplay`, `Victory`, and `GameOver` are checked (indices 0 to 3).
+3. Select **Windows, Mac, Linux** > Architecture: **x86_64**.
+4. Click **Build** and choose an output directory (e.g. `Builds/GlitchRun_v1.0/`).

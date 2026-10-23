@@ -289,6 +289,8 @@ namespace GlitchRun.Player
                 AudioManager.Instance.PlaySfx("damage");
             }
 
+            Gameplay.CameraFollow2D.Instance?.TriggerShake(0.25f, 0.35f);
+
             if (Core.GameManager.Instance != null)
             {
                 Core.GameManager.Instance.PlayerTookDamage(source);

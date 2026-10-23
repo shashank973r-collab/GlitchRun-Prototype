@@ -208,7 +208,7 @@ namespace GlitchRun.EditorScripts
 
             // Audio Manager
             var audioObj = new GameObject("AudioManager");
-            audioObj.AddComponent<AudioManager>();
+            SetupAudioManager(audioObj);
 
             // UI Canvas
             var canvasObj = new GameObject("Canvas");
@@ -301,7 +301,7 @@ namespace GlitchRun.EditorScripts
 
             // 2. Audio Manager
             var audioObj = new GameObject("AudioManager");
-            audioObj.AddComponent<AudioManager>();
+            SetupAudioManager(audioObj);
 
             // 3. Player Instance
             GameObject playerInstance = (GameObject)PrefabUtility.InstantiatePrefab(prefabs.Player);
@@ -503,7 +503,7 @@ namespace GlitchRun.EditorScripts
 
             // Audio Manager
             var audioObj = new GameObject("AudioManager");
-            audioObj.AddComponent<AudioManager>();
+            SetupAudioManager(audioObj);
 
             // Canvas
             var canvasObj = new GameObject("Canvas");
@@ -560,7 +560,7 @@ namespace GlitchRun.EditorScripts
             cam.backgroundColor = new Color(0.08f, 0.03f, 0.04f, 1f); // Cyber red void
 
             var audioObj = new GameObject("AudioManager");
-            audioObj.AddComponent<AudioManager>();
+            SetupAudioManager(audioObj);
 
             var canvasObj = new GameObject("Canvas");
             var canvas = canvasObj.AddComponent<Canvas>();
@@ -774,6 +774,24 @@ namespace GlitchRun.EditorScripts
             slider.value = 1f;
 
             return slider;
+        }
+
+        private static void SetupAudioManager(GameObject audioObj)
+        {
+            var am = audioObj.AddComponent<AudioManager>();
+            var so = new SerializedObject(am);
+            so.FindProperty("bgmMenu").objectReferenceValue = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Resources/Audio/Music/bgm_menu.wav");
+            so.FindProperty("bgmGameplay").objectReferenceValue = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Resources/Audio/Music/bgm_gameplay.wav");
+            so.FindProperty("sfxJump").objectReferenceValue = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Resources/Audio/SFX/sfx_jump.wav");
+            so.FindProperty("sfxPickup").objectReferenceValue = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Resources/Audio/SFX/sfx_pickup.wav");
+            so.FindProperty("sfxGlitchOn").objectReferenceValue = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Resources/Audio/SFX/sfx_glitch_on.wav");
+            so.FindProperty("sfxGlitchOff").objectReferenceValue = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Resources/Audio/SFX/sfx_glitch_off.wav");
+            so.FindProperty("sfxDamage").objectReferenceValue = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Resources/Audio/SFX/sfx_damage.wav");
+            so.FindProperty("sfxDeath").objectReferenceValue = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Resources/Audio/SFX/sfx_death.wav");
+            so.FindProperty("sfxCheckpoint").objectReferenceValue = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Resources/Audio/SFX/sfx_checkpoint.wav");
+            so.FindProperty("sfxVictory").objectReferenceValue = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Resources/Audio/SFX/sfx_victory.wav");
+            so.FindProperty("sfxClick").objectReferenceValue = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Resources/Audio/SFX/sfx_ui_click.wav");
+            so.ApplyModifiedProperties();
         }
 
         public static void RegisterBuildSettings()

@@ -115,9 +115,9 @@ MonoBehaviour:
   glitchDuration: 2
   glitchCooldown: 3.5
   targetRenderer: {fileID: 0}
-  glitchColor1: {r: 0.2, g: 1, b: 0.5, a: 0.85}
-  glitchColor2: {r: 0, g: 0.9, b: 1, a: 0.75}
-  glitchColor3: {r: 0.9, g: 0.2, b: 1, a: 0.75}
+  glitchColor1: {r: 0, g: 1, b: 0.85, a: 0.85}
+  glitchColor2: {r: 0.9, g: 0.1, b: 0.95, a: 0.75}
+  glitchColor3: {r: 0.1, g: 1, b: 0.5, a: 0.85}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 0

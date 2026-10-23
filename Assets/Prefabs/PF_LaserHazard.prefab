@@ -156,8 +156,8 @@ MonoBehaviour:
   activeTime: 2.5
   inactiveTime: 1.5
   initialDelay: 0
+  canBeGlitched: 0
   laserRenderer: {fileID: 0}
   laserCollider: {fileID: 0}
   activeColor: {r: 1, g: 0.1, b: 0.25, a: 0.95}
-  bypassedColor: {r: 0.1, g: 1, b: 0.6, a: 0.6}
-  warningColor: {r: 1, g: 0.5, b: 0.1, a: 0.4}
+  warningColor: {r: 1, g: 0.5, b: 0.1, a: 0.35}

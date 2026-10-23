@@ -1,6 +1,24 @@
-# GLITCH RUN — BREAK THE SIMULATION
 
-Welcome to the repository for **GLITCH RUN — BREAK THE SIMULATION**, a fast-paced 2D cyberpunk precision platformer where reality itself is unstable. Players manipulate glitches in code to shatter the confines of an artificial simulated world.
+# 🎮 GLITCH RUN — BREAK THE SIMULATION
+
+[▶ **PLAY THE GAME ONLINE**](https://shashankr.itch.io/glitch-run-break-the-simulation)
+
+A neon cyberpunk platformer built with Unity. Run, jump, collect items, dodge deadly hazards, and escape the simulation!
+
+## ✨ Features
+- Player movement and jumping
+- Collectibles and score tracking
+- Glitch phases and dangerous obstacles
+- Checkpoints, victory and game-over screens
+- Browser-playable Web build
+
+## 🛠️ Built With
+- Unity 6
+- C#
+- Web Build
+
+## 🎮 Play Online
+Play directly in your browser: [GLITCH RUN](https://shashankr.itch.io/glitch-run-break-the-simulation)
 
 ---
 

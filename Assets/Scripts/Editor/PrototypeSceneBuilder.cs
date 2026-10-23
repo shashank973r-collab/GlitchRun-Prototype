@@ -2,32 +2,17 @@ using System.IO;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 using GlitchRun.Core;
 using GlitchRun.Player;
 using GlitchRun.Hazards;
 using GlitchRun.Gameplay;
 using GlitchRun.UI;
 
+
 namespace GlitchRun.EditorScripts
 {
-    [InitializeOnLoad]
     public static class PrototypeSceneBuilder
     {
-        private const string PrefKey = "GlitchRun_Prototype_Built_v1";
-
-        static PrototypeSceneBuilder()
-        {
-            EditorApplication.delayCall += () =>
-            {
-                if (!EditorPrefs.GetBool(PrefKey, false))
-                {
-                    EditorPrefs.SetBool(PrefKey, true);
-                    BuildAll();
-                }
-            };
-        }
-
         [MenuItem("Glitch Run/Build Prototype Scene and Prefabs", priority = 1)]
         public static void BuildAll()
         {
@@ -152,12 +137,8 @@ namespace GlitchRun.EditorScripts
         {
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
 
-            // 1. Global 2D Light (Uniform clear lighting for cyberpunk palette)
-            var lightObj = new GameObject("Global 2D Light");
-            var light2D = lightObj.AddComponent<Light2D>();
-            light2D.lightType = Light2D.LightType.Global;
-            light2D.color = Color.white;
-            light2D.intensity = 1.0f;
+            // 1. Optional 2D lighting omitted to avoid a Universal Render Pipeline dependency.
+            // The background and sprites render without this component.
 
             // 2. Animated Cyberpunk City Background
             var bgObj = new GameObject("BG_City_Animated");
@@ -192,10 +173,8 @@ namespace GlitchRun.EditorScripts
             followSo.FindProperty("minBounds").vector2Value = new Vector2(-2f, -1f);
             followSo.FindProperty("maxBounds").vector2Value = new Vector2(58f, 8f);
             followSo.ApplyModifiedProperties();
-
-            // 5. Game Manager
             var gmObj = new GameObject("GameManager");
-            gmObj.AddComponent<GameManager>();
+gmObj.AddComponent<GameManager>();
 
             // 6. Game HUD
             var hudObj = new GameObject("GameHUD");
@@ -285,8 +264,7 @@ namespace GlitchRun.EditorScripts
             obj.transform.position = pos;
             return obj;
         }
-
-        private static void AddSceneToBuildSettings()
+ private static void AddSceneToBuildSettings()
         {
             var scenes = EditorBuildSettings.scenes;
             string scenePath = "Assets/Scenes/PrototypeScene.unity";

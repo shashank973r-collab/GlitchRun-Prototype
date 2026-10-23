@@ -22,6 +22,9 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 *.log
+build_log.txt
+build_test.log
+results.xml
 
 # By default unity supports Blender asset imports, *.blend1 blender files do not need to be commited to version control.
 *.blend1

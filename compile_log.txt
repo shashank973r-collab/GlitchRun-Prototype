@@ -1,0 +1,469 @@
+VBCSCompilerPreWarmer: watching VBCSCompiler (PID 5208)
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 2544)
+VBCSCompiler prewarm took 21.91 ms
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.6/staging' branch; Version is '6000.6.7f1 (b22767f04f04) revision 11675495'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-shash" at "2026-10-23T15:57:56.2892345Z"
+OS: 'Windows 11  (10.0.26300) CoreSingleLanguage' Language: 'en' Physical Memory: 15800 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-10-23T15:57:56Z
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 21064, path: "C:/Program Files/Unity Hub/UnityLicensingClient_V1/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.3+d7ffd15
+  Session Id:              e9af77d14e904b06bfae8f7fc33cf740
+  Correlation Id:          2f7296ed2a16d033be26e1833937debd
+  External correlation Id: 7116816325838370744
+  Machine Id:              FqEMD5NNypfoH3M/sh8AH0QT3yM=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-shash" (connect: 0.00s, validation: 0.00s, handshake: 0.07s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-shash-notifications" at "2026-10-23T15:57:56.3563707Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 13469987615864-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.01
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 0.11s
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.6.7f1\Editor\Unity.exe
+-batchmode
+-nographics
+-quit
+-projectPath
+c:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype
+-logFile
+c:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\compile_log.txt
+Successfully changed project path to: c:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype
+C:/Users/shash/OneDrive/Desktop/projectts/GlitchRun-Prototype
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-remapper-allocator-initial-capacity=32768"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=1"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.
+Player connection [17232]  Target information:
+
+Player connection [17232]  * "[IP] 172.16.25.103 [Port] 55504 [Flags] 2 [Guid] 323151545 [EditorId] 323151545 [Version] 1048832 [Id] WindowsEditor(7,Shashank) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [17232] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [17232] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-23520" after 0.2 seconds.
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+Launching Unity Data Store - C:/Program Files/Unity/Hub/Editor/6000.6.7f1/Editor/Data/Tools/Unity.DataStore.exe 
+Unity Data Store artifact dir = Library/DataStore, working dir = C:/Users/shash/OneDrive/Desktop/projectts/GlitchRun-PrototypeUnity Data Store running and initialised
+[Physics::Module] Selected backend (deferred post-plugins).
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.6.7f1 (b22767f04f04)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=262144, entitiesPerBlock=1024, blocksPerSlotPage=0, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.6.7f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/shash/OneDrive/Desktop/projectts/GlitchRun-Prototype/Assets
+Forcing GfxDevice: Null
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.6.7f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.6.7f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.6.7f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.6.7f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56520
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.7f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.7f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.003824 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  1.016 seconds
+Domain Reload Profiling: 1698ms
+	BeginReloadAssembly (173ms)
+		CreateAndSetChildDomain (11ms)
+	RebuildCommonClasses (5ms)
+	RebuildNativeTypeToScriptingClass (17ms)
+	initialDomainReloadingComplete (88ms)
+	LoadAllAssembliesAndSetupDomain (398ms)
+		LoadAssemblies (158ms)
+		TypeCache.Refresh (258ms)
+			TypeCache.ScanAssembly (243ms)
+		AnalyzeDomain (1ms)
+	FinalizeReload (1017ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			BeforeProcessingInitializeOnLoad (196ms)
+			ProcessInitializeOnLoadAttributes (223ms)
+			ProcessInitializeOnLoadMethodAttributes (293ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 75 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.2d.animation@16.0.1 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.2d.animation@899988b542b9)
+    com.unity.2d.aseprite@6.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.2d.aseprite@ab909e3e9b5f)
+    com.unity.2d.psdimporter@15.0.1 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.2d.psdimporter@e02a9153d8d9)
+    com.unity.2d.spriteshape@16.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.2d.spriteshape@42798c9d35d3)
+    com.unity.2d.tilemap.extras@9.0.1 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.2d.tilemap.extras@9446f3c60919)
+    com.unity.2d.tooling@4.0.1 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.2d.tooling@4e93af4036ee)
+    com.unity.ai.assistant@2.21.0-pre.1 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.ai.assistant@a0bce5f1cc56)
+    com.unity.ai.inference@2.6.1 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.ai.inference@9a123aee5df7)
+    com.unity.ide.rider@3.1.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.ide.rider@570989d4a882)
+    com.unity.ide.visualstudio@2.0.26 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.ide.visualstudio@a99d56dec63f)
+    com.unity.inputsystem@1.20.1 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.inputsystem@2436e68c60c4)
+    com.unity.learn.iet-framework@6.0.7 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.learn.iet-framework@96330db47073)
+    com.unity.pipeline@0.9.0-exp.1 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.pipeline@f311b58065e4)
+    com.unity.visualscripting@1.9.12 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.visualscripting@4edfcc09512f)
+    com.unity.nuget.mono-cecil@1.11.6 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+    com.unity.nuget.newtonsoft-json@3.2.2 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.nuget.newtonsoft-json@4dfd81071c64)
+    com.unity.settings-manager@2.1.1 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.settings-manager@0b8638c5ce86)
+    com.unity.dt.app-ui@2.2.4 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.dt.app-ui@8606a9847e5b)
+    com.unity.2d.common@15.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.2d.common@b779c433ed47)
+    com.unity.searcher@4.9.5 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.searcher@a463122f2c00)
+    com.unity.profiling.core@1.0.3 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.profiling.core@8a49f7027d06)
+  Built-in packages:
+    com.unity.2d.sprite@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.2d.sprite@752945c75a6f)
+    com.unity.2d.tilemap@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.2d.tilemap@f4c7bd71ac8a)
+    com.unity.render-pipelines.universal@17.6.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.render-pipelines.universal@ffe395a3a1d1)
+    com.unity.test-framework@1.8.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.test-framework@ee3fe9477490)
+    com.unity.timeline@6.6.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.timeline@5aa4cbea9cc5)
+    com.unity.ugui@2.6.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.ugui@eb824e41fbc7)
+    com.unity.modules.accessibility@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.accessibility)
+    com.unity.modules.adaptiveperformance@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.adaptiveperformance)
+    com.unity.modules.ai@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.physicscore2d@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.physicscore2d)
+    com.unity.modules.screencapture@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.terrainphysics)
+    com.unity.modules.tetgen@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.tetgen)
+    com.unity.modules.tilemap@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.tilemap)
+    com.unity.modules.timelinefoundation@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.timelinefoundation)
+    com.unity.modules.ui@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vectorgraphics@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.vectorgraphics)
+    com.unity.modules.vehicles@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.video)
+    com.unity.modules.wind@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.ext.nunit@2.1.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.ext.nunit@0198eae3b53e)
+    com.unity.render-pipelines.core@17.6.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.render-pipelines.core@13460d8ea9e5)
+    com.unity.shadergraph@17.6.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.shadergraph@8b7e693cdbfe)
+    com.unity.render-pipelines.universal-config@17.6.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.render-pipelines.universal-config@561422b74439)
+    com.unity.editorcoroutines@6.6.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.editorcoroutines@8cd72baa102a)
+    com.unity.burst@2.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.burst@626e66ab421b)
+    com.unity.collections@6.6.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.collections@4920e8897b5a)
+    com.unity.mathematics@1.4.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.mathematics@8306a64d0cd6)
+    com.unity.graph-authoring@1.0.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.graph-authoring@cfd2588851ee)
+    com.unity.test-framework.performance@6.6.0 (location: C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\PackageCache\com.unity.test-framework.performance@e8b39e3ef3d9)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.04 seconds
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
+Refreshing native plugins compatible for Editor in 6.75 ms, found 4 plugins.
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.7f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: C:/Users/shash/OneDrive/Desktop/projectts/GlitchRun-Prototype
+DisplayProgressbar: Compiling Scripts
+ExitCode: 0 Duration: 1s786ms
+[1417/1896  0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[1880/1896  0s] Csc Library/Bee/artifacts/1900b0aE.dag/GlitchRun.dll (+2 others)
+[1881/1896  0s] Csc Library/Bee/artifacts/1900b0aE.dag/GlitchRun.PlayMode.Tests.dll (+2 others)
+Assets\Tests\PlayMode\LaserGlitchPlayModeTests.cs(384,93): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Tests\PlayMode\LaserGlitchPlayModeTests.cs(384,26): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Tests\PlayMode\LaserGlitchPlayModeTests.cs(385,97): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Tests\PlayMode\LaserGlitchPlayModeTests.cs(385,28): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+[1882/1896  0s] Csc Library/Bee/artifacts/1900b0aE.dag/GlitchRun.Editor.dll (+2 others)
+[1883/1896  0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/GlitchRun.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/GlitchRun.dll, with 153 defines and 307 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, Unity.Pipeline.CodeGen.MethodReloadInPlaceILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running Unity.Pipeline.CodeGen.MethodReloadInPlaceILPostProcessor
+[1884/1896  0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/GlitchRun.PlayMode.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/GlitchRun.PlayMode.Tests.dll, with 153 defines and 292 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, Unity.Pipeline.CodeGen.MethodReloadInPlaceILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running Unity.Pipeline.CodeGen.MethodReloadInPlaceILPostProcessor
+[1885/1896  0s] CopyFiles Library/ScriptAssemblies/GlitchRun.pdb
+[1886/1896  0s] CopyFiles Library/ScriptAssemblies/GlitchRun.PlayMode.Tests.pdb
+[1887/1896  0s] CopyFiles Library/ScriptAssemblies/GlitchRun.PlayMode.Tests.dll
+[1888/1896  0s] CopyFiles Library/ScriptAssemblies/GlitchRun.dll
+[1889/1896  0s] Csc Library/Bee/artifacts/1900b0aE.dag/GlitchRun.Tests.dll (+2 others)
+[1890/1896  0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/GlitchRun.Editor.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/GlitchRun.Editor.dll, with 151 defines and 316 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, Unity.Pipeline.CodeGen.MethodReloadInPlaceILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running Unity.Pipeline.CodeGen.MethodReloadInPlaceILPostProcessor
+[1891/1896  0s] CopyFiles Library/ScriptAssemblies/GlitchRun.Editor.pdb
+[1892/1896  0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/GlitchRun.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/GlitchRun.Tests.dll, with 151 defines and 302 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, Unity.Pipeline.CodeGen.MethodReloadInPlaceILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running Unity.Pipeline.CodeGen.MethodReloadInPlaceILPostProcessor
+[1893/1896  0s] CopyFiles Library/ScriptAssemblies/GlitchRun.Tests.dll
+[1894/1896  0s] CopyFiles Library/ScriptAssemblies/GlitchRun.Tests.pdb
+[1895/1896  0s] CopyFiles Library/ScriptAssemblies/GlitchRun.Editor.dll
+*** Tundra build success (1.74 seconds), 17 items updated, 1896 evaluated
+Assets\Tests\PlayMode\LaserGlitchPlayModeTests.cs(384,93): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Tests\PlayMode\LaserGlitchPlayModeTests.cs(384,26): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Tests\PlayMode\LaserGlitchPlayModeTests.cs(385,97): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Tests\PlayMode\LaserGlitchPlayModeTests.cs(385,28): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+AssetDatabase: script compilation time: 2.832040s
+Total cache size 267910748
+Total cache size after purge 267910748, took 00:00:00.4962899
+Begin MonoManager ReloadAssembly
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Importing 'GUID: 422143855aea7734dbcb72fa6df014ca - Path: Assets/Tests/PlayMode' with importer (DefaultImporter)
+Imported 'GUID: 422143855aea7734dbcb72fa6df014ca' -> (Import Result ID: '6ad431709820a7504d7052a6d8f0c1f2') in 0.030 seconds [static dependencies only]. Details - ImportResultOutputID=5fd59b4ce4642af4af65f36e3c2d0db5 DependenciesID=80673e4893b04056a8c21adf7883d98f StaticDependenciesID=9e08c7db164de1c7ebcd714ee3cbadf1 
+Importing 'GUID: 1a689a63a7daf5d459781bb7e2306940 - Path: Assets/Tests/PlayMode/GlitchRun.PlayMode.Tests.asmdef' with importer (AssemblyDefinitionImporter)
+Imported 'GUID: 1a689a63a7daf5d459781bb7e2306940' -> (Import Result ID: '27a6e49d415d710e2dd6b060923318ca') in 0.020 seconds [static dependencies only]. Details - ImportResultOutputID=af2ea9df95c36e9d37587a833dc7c63f DependenciesID=2cbb79d6944ebf18907788f115f69827 StaticDependenciesID=fbaf6e1c09560a516b129b4295669023 
+Refreshing native plugins compatible for Editor in 6.53 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 6.44 ms, found 4 plugins.
+Start HTTP server: port:7800
+Pipeline: Descriptor written to C:\Users\shash\OneDrive\Desktop\projectts\GlitchRun-Prototype\Library\Pipeline\.unity-pipeline-port
+[Licensing::Client] Error: Code 404 while processing request (status: Found 0 entitlement groups and 0 free entitlements matching requested entitlement ids)
+[Licensing::Client] Error: Code 404 while processing request (status: Found 0 entitlement groups and 0 free entitlements matching requested entitlement ids)
+[Licensing::Client] Error: Code 404 while processing request (status: Found 0 entitlement groups and 0 free entitlements matching requested entitlement ids)
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  3.373 seconds
+Domain Reload Profiling: 5510ms
+	BeginReloadAssembly (325ms)
+		DisableScriptedObjects (40ms)
+		CreateAndSetChildDomain (57ms)
+	RebuildCommonClasses (13ms)
+	RebuildNativeTypeToScriptingClass (22ms)
+	initialDomainReloadingComplete (149ms)
+	LoadAllAssembliesAndSetupDomain (1625ms)
+		LoadAssemblies (697ms)
+		TypeCache.Refresh (559ms)
+			TypeCache.ScanAssembly (530ms)
+		AnalyzeDomain (241ms)
+			BuildScriptInfoCaches (225ms)
+			ResolveRequiredComponents (14ms)
+	FinalizeReload (3375ms)
+		SetupLoadedEditorAssemblies (0ms)
+			LogAssemblyErrors (3ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			BeforeProcessingInitializeOnLoad (225ms)
+			ProcessInitializeOnLoadAttributes (1837ms)
+			ProcessInitializeOnLoadMethodAttributes (738ms)
+			AfterProcessingInitializeOnLoad (7ms)
+		AwakeInstancesAfterBackupRestoration (30ms)
+Starting new worker id: 0 with log in C:/Users/shash/OneDrive/Desktop/projectts/GlitchRun-Prototype/Logs/AssetImportWorkerHW0.log
+Refreshing native plugins compatible for Editor in 4.44 ms, found 4 plugins.
+
+Asset Pipeline Refresh (id=bb26696b646af124fbc2f2a8f7639f68): Total: 10.687 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=2 (actual=2, local cache=0, cache server=0)
+		Asset DB Process Time: managed=9 ms, native=4741 ms
+		Asset DB Callback time: managed=653 ms, native=52 ms
+		Scripting: domain reloads=1, domain reload time=2266 ms, compile time=2835 ms, other=129 ms
+		Project Asset Count: scripts=2380, non-scripts=5912
+		Asset File Changes: new=0, changed=1, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 44.198ms
+	ApplyChangesToAssetFolders: 1.351ms
+	Scan: 490.405ms
+	Collect global state as custom dependencies: 26.589ms
+	OnSourceAssetsModified: 0.808ms
+	CategorizeScriptCompilationAssets: 89.077ms
+	ProcessAssetsWithTransientArtifactChanges: 172.386ms
+	CategorizeAssets: 141.819ms
+	CompileScripts: 2834.717ms
+	ImportOutOfDateAssets: 3472.943ms (3398.107ms without children)
+		ImportManagerImport: 53.772ms (1.557ms without children)
+			UpdateCategorizedAssets: 0.152ms
+		ReloadNativeAssets: 0.059ms
+		UnloadImportedAssets: 2.697ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 2.006ms
+		ImportSchedulerStart: 16.279ms
+	PostProcessAllAssets: 655.605ms
+		XRBuildSystem.XRAssetImported 1.368ms
+		VCAutoAddAssetPostprocess 0.924ms
+		PostProcessCallbackCreateDeferredMaterials 0.121ms
+		MonoPostProcessAllAssets: 652.584ms
+			AssetPostprocessor.OnPostprocessAllAssets 234.869ms
+			AssetReferenceReimportMonitor.OnPostprocessAllAssets 38.002ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 36.237ms
+			UniversalRenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 20.798ms
+			SyncVS.PostprocessSyncProject 15.199ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 9.693ms
+			GraphRefreshPostprocessor.OnPostprocessAllAssets 2.450ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 1.930ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 1.893ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 1.676ms
+			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 1.596ms
+			AssetChangeDetector.OnPostprocessAllAssets 1.477ms
+			AssetChangedListener.OnPostprocessAllAssets 1.468ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.375ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 0.972ms
+			AssetProcessor.OnPostprocessAllAssets 0.919ms
+			MaterialPostprocessor.OnPostprocessAllAssets 0.872ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.749ms
+			SpriteEditorTexturePostprocessor.OnPostprocessAllAssets 0.707ms
+			SpriteSlicePostprocessor.OnPostprocessAllAssets 0.550ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.541ms
+			SkillsProjectAssetPostprocessor.OnPostprocessAllAssets 0.536ms
+			InputActionAssetPostprocessor.OnPostprocessAllAssets 0.499ms
+			SpriteShapeAssetPostProcessor.OnPostprocessAllAssets 0.462ms
+			ModelAssetProcessor.OnPostprocessAllAssets 0.411ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.373ms
+			InputActionJsonNameModifierAssetProcessor.OnPostprocessAllAssets 0.351ms
+			ProjectSettingsPostprocessor.OnPostprocessAllAssets 0.333ms
+			PostProcessor.OnPostprocessAllAssets 0.327ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.309ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.289ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.284ms
+			SpriteLibraryAssetPostprocessor.OnPostprocessAllAssets 0.268ms
+			AssetEvents.OnPostprocessAllAssets 0.250ms
+			PSDImporterAssetPostProcessor.OnPostprocessAllAssets 0.243ms
+			SamplePostprocessor.OnPostprocessAllAssets 0.242ms
+			PSDImportPostProcessor.OnPostprocessAllAssets 0.224ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.206ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.198ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.183ms
+			ThemePostprocessor.OnPostprocessAllAssets 0.178ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.174ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.140ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.085ms
+			TrackSelectedAssetsProcessor.OnPostprocessAllAssets 0.076ms
+	PostAssetChangesProfiler: 7.727ms
+	UnloadStreamsBegin: 3.967ms
+	PersistCurrentRevisions: 0.606ms
+	GenerateScriptTypeHashes: 2.932ms
+	GenerateScriptTypeSerializationHashes: 4.919ms
+	Untracked: 2683.995ms
+
+Application.AssetDatabase Initial Refresh End
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Scanning for USB devices : 2.432ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-GlitchRun-Prototype
+Unloading 70 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 10602 unused Assets / (3.5 MB). Loaded Objects now: 11641.
+Memory consumption went from 0.55 GB to 0.55 GB.
+Total: 30.668800 ms (FindLiveObjects: 0.864300 ms CreateObjectMapping: 0.707000 ms MarkObjects: 26.481000 ms  DeleteObjects: 1.983100 ms)
+
+Batchmode quit successfully invoked - shutting down!
+Pipeline Server stopped
+Worker ready: AssetImportWorkerHW0 0
+Importing 'GUID: 0000000000000000b000000000000000 - Path: ProjectSettings/EditorBuildSettings.asset' with importer (LibraryAssetImporter)
+Imported 'GUID: 0000000000000000b000000000000000' -> (Import Result ID: 'eacf50f58765283e58988589ade5719f') in 0.002 seconds [static dependencies only]. Details - ImportResultOutputID=0a89a5c5f492143e0fa186859e17ba6f DependenciesID=cbefb96cf4412f7069e2f85425e05f82 StaticDependenciesID=93ff83118abf075ea2388539d148585a 
+Refreshing native plugins compatible for Editor in 4.73 ms, found 4 plugins.
+Asset Pipeline Refresh (id=b11a838940f5b0d4cb677cebd9a81a26): Total: 0.156 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-shash-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-shash channel disconnected successfully.
+Lingering sessions upon destruction of worker manager
+Unity Data Store service was successfully shut down
+UDS shutting down local client system
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+Exiting batchmode successfully now!
+[ExitDontLaunchBugReporter] Exiting without the bug reporter. Application will exit with return code 0

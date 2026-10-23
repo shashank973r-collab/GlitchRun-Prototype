@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Passed" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-23 16:03:09Z" end-time="2026-10-23 16:03:09Z" duration="0.0988035">
+  <test-suite type="TestSuite" id="1000" name="GlitchRun-Prototype" fullname="GlitchRun-Prototype" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-23 16:03:09Z" end-time="2026-10-23 16:03:09Z" duration="0.098804" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1007" name="GlitchRun.Tests.dll" fullname="C:/Users/shash/OneDrive/Desktop/projectts/GlitchRun-Prototype/Library/ScriptAssemblies/GlitchRun.Tests.dll" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-23 16:03:09Z" end-time="2026-10-23 16:03:09Z" duration="0.076983" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="12372" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1008" name="GlitchRun" fullname="GlitchRun" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-23 16:03:09Z" end-time="2026-10-23 16:03:09Z" duration="0.075962" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1009" name="Tests" fullname="GlitchRun.Tests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-23 16:03:09Z" end-time="2026-10-23 16:03:09Z" duration="0.075521" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="GlitchRunTests" fullname="GlitchRun.Tests.GlitchRunTests" classname="GlitchRun.Tests.GlitchRunTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-23 16:03:09Z" end-time="2026-10-23 16:03:09Z" duration="0.073599" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1002" name="TestBuildSettingsContainAllFourScenes" fullname="GlitchRun.Tests.GlitchRunTests.TestBuildSettingsContainAllFourScenes" methodname="TestBuildSettingsContainAllFourScenes" classname="GlitchRun.Tests.GlitchRunTests" runstate="Runnable" seed="2003900956" result="Passed" start-time="2026-10-23 16:03:09Z" end-time="2026-10-23 16:03:09Z" duration="0.020380" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1005" name="TestDroneHazardPatrolSetup" fullname="GlitchRun.Tests.GlitchRunTests.TestDroneHazardPatrolSetup" methodname="TestDroneHazardPatrolSetup" classname="GlitchRun.Tests.GlitchRunTests" runstate="Runnable" seed="905268249" result="Passed" start-time="2026-10-23 16:03:09Z" end-time="2026-10-23 16:03:09Z" duration="0.007434" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1006" name="TestGameManagerScoreCalculationFormula" fullname="GlitchRun.Tests.GlitchRunTests.TestGameManagerScoreCalculationFormula" methodname="TestGameManagerScoreCalculationFormula" classname="GlitchRun.Tests.GlitchRunTests" runstate="Runnable" seed="235514743" result="Passed" start-time="2026-10-23 16:03:09Z" end-time="2026-10-23 16:03:09Z" duration="0.008574" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1004" name="TestGlitchAbilityCooldownInvariants" fullname="GlitchRun.Tests.GlitchRunTests.TestGlitchAbilityCooldownInvariants" methodname="TestGlitchAbilityCooldownInvariants" classname="GlitchRun.Tests.GlitchRunTests" runstate="Runnable" seed="1031628098" result="Passed" start-time="2026-10-23 16:03:09Z" end-time="2026-10-23 16:03:09Z" duration="0.004443" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1003" name="TestPlayerJumpKinematicsMath" fullname="GlitchRun.Tests.GlitchRunTests.TestPlayerJumpKinematicsMath" methodname="TestPlayerJumpKinematicsMath" classname="GlitchRun.Tests.GlitchRunTests" runstate="Runnable" seed="60863502" result="Passed" start-time="2026-10-23 16:03:09Z" end-time="2026-10-23 16:03:09Z" duration="0.000418" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/shash/AppData/LocalLow/DefaultCompany/GlitchRun-Prototype\TestResults.xml
+Saving results to: C:/Users/shash/AppData/LocalLow/DefaultCompany/GlitchRun-Prototype\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
